@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizFlow - Créez vos publicités</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
+header{background:#123c85;color:white;padding:28px 18px;text-align:center}
+header h1{margin:0;font-size:32px}
+header p{margin:10px 0 0}
+main{max-width:650px;margin:25px auto;padding:0 15px}
+.card{background:white;padding:23px;border-radius:16px;box-shadow:0 4px 20px #00000012;margin-bottom:20px}
+h2{font-size:21px;margin-top:0}
+label{display:block;font-weight:bold;margin:16px 0 7px}
+input,textarea,select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
+textarea{min-height:85px;resize:vertical}
+button{width:100%;padding:15px;border:0;border-radius:10px;background:#1768e8;color:white;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
+button:active{opacity:.8}
+.secondary{background:#16834a}
+.dark{background:#26364f}
+#resultBox{display:none}
+#result{white-space:pre-wrap;line-height:1.6;background:#f5f8ff;padding:17px;border-radius:10px}
+small{color:#64748b}
+footer{text-align:center;padding:25px;color:#64748b}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🚀 BizFlow</h1>
+<p>Créez des publicités qui donnent envie d'acheter.</p>
+</header>
+
+<main>
+<section class="card">
+<h2>✨ Créer une publicité</h2>
+
+<label>Nom du produit</label>
+<input id="product" placeholder="Ex : Toyota Matrix 2004">
+
+<label>Prix en FCFA</label>
+<input id="price" type="number" placeholder="Ex : 4000000">
+
+<label>Caractéristiques du produit</label>
+<textarea id="details" placeholder="Ex : Boîte automatique, 4 cylindres, bon état"></textarea>
+
+<label>Votre numéro WhatsApp</label>
+<input id="phone" placeholder="Ex : 22967505197">
+
+<label>Style de publicité</label>
+<select id="style">
+<option value="pro">Professionnel</option>
+<option value="urgent">Vente rapide</option>
+<option value="friendly">Simple et chaleureux</option>
+</select>
+
+<button onclick="generateAd()">✨ Générer ma publicité</button>
+</section>
+
+<section class="card" id="resultBox">
+<h2>📢 Votre publicité</h2>
+<div id="result"></div>
+<button onclick="copyAd()">📋 Copier le texte</button>
+<button class="secondary" onclick="shareAd()">🟢 Partager sur WhatsApp</button>
+<button class="dark" onclick="generateAd()">🔄 Générer une autre version</button>
+<p id="notice"></p>
+</section>
+
+<section class="card">
+<h2>Pourquoi utiliser BizFlow ?</h2>
+<p>✅ Gagnez du temps pour rédiger vos annonces.</p>
+<p>✅ Présentez vos produits de façon professionnelle.</p>
+<p>✅ Publiez facilement sur WhatsApp et Facebook.</p>
+<small>Version de lancement gratuite.</small>
+</section>
+</main>
+
+<footer>© 2026 BizFlow — Développé pour les entrepreneurs</footer>
+
+<script>
+let adText = "";
+let counter = 0;
+
+function generateAd(){
+ const product = document.getElementById("product").value.trim();
+ const price = document.getElementById("price").value.trim();
+ const details = document.getElementById("details").value.trim();
+ const phone = document.getElementById("phone").value.trim();
+ const style = document.getElementById("style").value;
+
+ if(!product){
+   alert("Veuillez entrer le nom du produit.");
+   return;
+ }
+
+ const titles = {
+  pro:[
+   "✨ UNE BELLE OPPORTUNITÉ À DÉCOUVRIR",
+   "⭐ PRODUIT DISPONIBLE DÈS MAINTENANT"
+  ],
+  urgent:[
+   "🚨 OFFRE À DÉCOUVRIR !",
+   "🔥 NE MANQUEZ PAS CETTE OPPORTUNITÉ"
+  ],
+  friendly:[
+   "😊 Bonjour à tous !",
+   "🛍️ Voici un produit qui pourrait vous intéresser !"
+  ]
+ };
+
+ const intros = {
+  pro:"Nous vous proposons :",
+  urgent:"Découvrez dès maintenant :",
+  friendly:"Je vous présente :"
+ };
+
+ const endings = {
+  pro:"Contactez-nous pour plus d'informations.",
+  urgent:"Intéressé ? Contactez-nous rapidement !",
+  friendly:"Une question ? Écrivez-nous avec plaisir !"
+ };
+
+ const title = titles[style][counter % 2];
+ counter++;
+
+ const formattedPrice = price
+  ? Number(price).toLocaleString("fr-FR") + " FCFA"
+  : "Prix sur demande";
+
+ adText =
+ title + "\n\n" +
+ intros[style] + "\n\n" +
+ "📦 " + product + "\n" +
+ "💰 Prix : " + formattedPrice + "\n" +
+ (details ? "\n✅ Caractéristiques :\n" + details + "\n" : "") +
+ "\n" + endings[style] +
+ (phone ? "\n📲 WhatsApp : +" + phone.replace(/\D/g,"") : "") +
+ "\n\n#BizFlow #Vente #BonPlan";
+
+ document.getElementById("result").textContent = adText;
+ document.getElementById("resultBox").style.display = "block";
+ document.getElementById("notice").textContent = "";
+ document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
+}
+
+async function copyAd(){
+ try{
+  await navigator.clipboard.writeText(adText);
+  document.getElementById("notice").textContent = "✅ Publicité copiée !";
+ }catch(e){
+  const t=document.createElement("textarea");
+  t.value=adText;
+  document.body.appendChild(t);
+  t.select();
+  document.execCommand("copy");
+  t.remove();
+  document.getElementById("notice").textContent = "✅ Texte copié.";
+ }
+}
+
+function shareAd(){
+ if(!adText)return;
+ window.open(
+  "https://wa.me/?text=" + encodeURIComponent(adText),
+  "_blank"
+ );
+}
+</script>
+
+</body>
+</html>
