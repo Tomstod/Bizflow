@@ -1,173 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BizFlow - Créez vos publicités</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827"><meta name="description" content="BizFlow vous aide à créer rapidement des publicités professionnelles pour WhatsApp et Facebook.">
+<title>BizFlow — Vos publicités, simplement</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172033}
-header{background:#123c85;color:white;padding:28px 18px;text-align:center}
-header h1{margin:0;font-size:32px}
-header p{margin:10px 0 0}
-main{max-width:650px;margin:25px auto;padding:0 15px}
-.card{background:white;padding:23px;border-radius:16px;box-shadow:0 4px 20px #00000012;margin-bottom:20px}
-h2{font-size:21px;margin-top:0}
-label{display:block;font-weight:bold;margin:16px 0 7px}
-input,textarea,select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
-textarea{min-height:85px;resize:vertical}
-button{width:100%;padding:15px;border:0;border-radius:10px;background:#1768e8;color:white;font-size:16px;font-weight:bold;cursor:pointer;margin-top:15px}
-button:active{opacity:.8}
-.secondary{background:#16834a}
-.dark{background:#26364f}
-#resultBox{display:none}
-#result{white-space:pre-wrap;line-height:1.6;background:#f5f8ff;padding:17px;border-radius:10px}
-small{color:#64748b}
-footer{text-align:center;padding:25px;color:#64748b}
+:root{--ink:#111827;--muted:#667085;--bg:#f5f7fb;--card:#fff;--line:#e6eaf0;--green:#16a36a;--green2:#0c8555;--gold:#f4b740;--navy:#101827}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}a{color:inherit;text-decoration:none}.wrap{width:min(1100px,92%);margin:auto}.topbar{background:var(--navy);color:#fff;padding:14px 0}.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-size:1.28rem;font-weight:850;letter-spacing:-.5px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#25c781,#0b8554);color:white;font-weight:900}.navlinks{display:flex;gap:22px;align-items:center;font-size:.93rem;color:#d5dce7}.navlinks a:hover{color:#fff}.navcta,.btn{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:12px;padding:12px 17px;font-weight:750;cursor:pointer;transition:.2s}.navcta,.btn-primary{background:var(--green);color:white}.navcta:hover,.btn-primary:hover{background:var(--green2);transform:translateY(-1px)}.btn-light{background:#fff;color:var(--ink);border:1px solid var(--line)}.hero{background:radial-gradient(circle at 85% 10%,#1f3e42 0,transparent 30%),linear-gradient(135deg,#101827,#172c38);color:#fff;padding:66px 0 72px;overflow:hidden}.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:#ffffff12;border:1px solid #ffffff25;padding:7px 12px;border-radius:999px;font-size:.83rem;color:#d8fbe9}.dot{width:8px;height:8px;background:#3be49a;border-radius:50%}h1{font-size:clamp(2.25rem,5vw,4.15rem);line-height:1.06;letter-spacing:-2px;margin:20px 0}.hero h1 span{color:#55e2a1}.hero p{color:#d0d8e3;font-size:1.08rem;max-width:570px}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 18px}.trust{color:#b8c4d1;font-size:.86rem}.preview{background:#fff;color:var(--ink);border-radius:24px;padding:18px;box-shadow:0 25px 70px #0005;transform:rotate(1deg)}.preview-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.pill{font-size:.75rem;color:#087448;background:#e5fbef;border-radius:999px;padding:5px 9px;font-weight:800}.mock-ad{border-radius:17px;padding:22px;background:linear-gradient(140deg,#e5fff2,#d7f3e8);min-height:230px;display:flex;flex-direction:column;justify-content:space-between}.mock-tag{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:#087448;font-weight:850}.mock-ad h3{font-size:1.75rem;line-height:1.08;margin:13px 0}.mock-price{font-size:1.35rem;font-weight:900;color:#087448}.mock-foot{display:flex;justify-content:space-between;gap:10px;font-size:.8rem;color:#34564a}.preview-note{font-size:.8rem;color:var(--muted);padding:13px 4px 0}.section{padding:64px 0}.section-head{text-align:center;max-width:680px;margin:0 auto 32px}.section-head h2{font-size:clamp(1.8rem,4vw,2.55rem);letter-spacing:-1px;margin:0 0 10px}.section-head p{color:var(--muted);margin:0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature,.panel,.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:0 5px 18px #152b4210}.icon{display:grid;place-items:center;width:47px;height:47px;border-radius:14px;background:#e8fbf1;font-size:1.35rem;margin-bottom:15px}.feature h3{margin:0 0 7px}.feature p{margin:0;color:var(--muted);font-size:.94rem}.workspace{background:#edf2f7}.workspace-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}.panel h3{margin-top:0}.field{margin:14px 0}.field label{display:block;font-weight:750;font-size:.9rem;margin-bottom:6px}.field input,.field textarea,.field select{width:100%;padding:12px 13px;border:1px solid #d8dee8;border-radius:10px;background:#fff;font:inherit;color:var(--ink)}.field textarea{min-height:92px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{outline:3px solid #16a36a20;border-color:var(--green)}.result{white-space:pre-wrap;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:12px;padding:17px;min-height:185px;color:#334155}.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:13px}.row .btn{flex:1}.hint{color:var(--muted);font-size:.82rem;margin-top:9px}.premium{background:linear-gradient(130deg,#172334,#173b34);color:white;border-radius:24px;padding:34px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center}.premium p{color:#d1ded9;max-width:660px}.premium .tag{color:#ffe4a1;font-weight:800;font-size:.83rem;letter-spacing:.7px;text-transform:uppercase}.premium h2{margin:7px 0;font-size:clamp(1.7rem,3vw,2.3rem)}.premium ul{padding-left:20px;color:#e5eee9}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step b{display:inline-grid;place-items:center;width:31px;height:31px;background:#e8fbf1;color:#087448;border-radius:10px;margin-bottom:12px}.step p{margin-bottom:0;color:var(--muted);font-size:.92rem}.faq{max-width:780px;margin:auto}.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:10px 0}.faq summary{font-weight:800;cursor:pointer}.faq p{color:var(--muted);margin-bottom:0}.footer{background:#101827;color:#c5cfda;padding:28px 0;margin-top:30px}.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}.footer small{color:#96a4b4}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#101827;color:#fff;padding:12px 18px;border-radius:12px;box-shadow:0 8px 30px #0003;display:none;z-index:10;max-width:90%;text-align:center}
+@media(max-width:760px){.navlinks{display:none}.hero{padding:46px 0 52px}.hero-grid,.workspace-grid{grid-template-columns:1fr}.hero-grid{gap:28px}.features,.steps{grid-template-columns:1fr}.section{padding:48px 0}.premium{grid-template-columns:1fr;padding:25px}.premium .btn{width:100%}.preview{transform:none}.hero h1{letter-spacing:-1.3px}}
 </style>
 </head>
 <body>
-
-<header>
-<h1>🚀 BizFlow</h1>
-<p>Créez des publicités qui donnent envie d'acheter.</p>
-</header>
-
+<header class="topbar"><div class="wrap nav"><a class="brand" href="#accueil"><span class="logo">B</span><span>BizFlow</span></a><nav class="navlinks"><a href="#avantages">Avantages</a><a href="#creer">Créer une publicité</a><a href="#premium">Premium</a></nav><a class="navcta" href="#creer">Commencer gratuitement</a></div></header>
 <main>
-<section class="card">
-<h2>✨ Créer une publicité</h2>
-
-<label>Nom du produit</label>
-<input id="product" placeholder="Ex : Toyota Matrix 2004">
-
-<label>Prix en FCFA</label>
-<input id="price" type="number" placeholder="Ex : 4000000">
-
-<label>Caractéristiques du produit</label>
-<textarea id="details" placeholder="Ex : Boîte automatique, 4 cylindres, bon état"></textarea>
-
-<label>Votre numéro WhatsApp</label>
-<input id="phone" placeholder="Ex : 22967505197">
-
-<label>Style de publicité</label>
-<select id="style">
-<option value="pro">Professionnel</option>
-<option value="urgent">Vente rapide</option>
-<option value="friendly">Simple et chaleureux</option>
-</select>
-
-<button onclick="generateAd()">✨ Générer ma publicité</button>
-</section>
-
-<section class="card" id="resultBox">
-<h2>📢 Votre publicité</h2>
-<div id="result"></div>
-<button onclick="copyAd()">📋 Copier le texte</button>
-<button class="secondary" onclick="shareAd()">🟢 Partager sur WhatsApp</button>
-<button class="dark" onclick="generateAd()">🔄 Générer une autre version</button>
-<p id="notice"></p>
-</section>
-
-<section class="card">
-<h2>Pourquoi utiliser BizFlow ?</h2>
-<p>✅ Gagnez du temps pour rédiger vos annonces.</p>
-<p>✅ Présentez vos produits de façon professionnelle.</p>
-<p>✅ Publiez facilement sur WhatsApp et Facebook.</p>
-<small>Version de lancement gratuite.</small>
-</section>
-</main>
-
-<footer>© 2026 BizFlow — Développé pour les entrepreneurs</footer>
-
+<section class="hero" id="accueil"><div class="wrap hero-grid"><div><span class="eyebrow"><span class="dot"></span> Pour les entrepreneurs et vendeurs</span><h1>Vos produits méritent des publicités <span>qui attirent.</span></h1><p>Créez en quelques instants des annonces claires et professionnelles pour WhatsApp et Facebook. Présentez vos produits, affichez vos prix et donnez envie à vos clients de vous contacter.</p><div class="hero-actions"><a class="btn btn-primary" href="#creer">Créer ma publicité →</a><a class="btn btn-light" href="#avantages">Découvrir BizFlow</a></div><div class="trust">✓ Simple à utiliser &nbsp; ✓ Pensé pour les vendeurs &nbsp; ✓ Accessible sur téléphone</div></div><div class="preview"><div class="preview-head"><strong>Aperçu de publicité</strong><span class="pill">Exemple</span></div><div class="mock-ad"><div><div class="mock-tag">✨ Offre à découvrir</div><h3>Votre prochain produit coup de cœur</h3><div style="color:#34564a">Qualité • Bon prix • Contact rapide</div></div><div><div class="mock-price">À partir de 25 000 F</div><div class="mock-foot"><span>📍 Disponible maintenant</span><span>💬 WhatsApp</span></div></div></div><div class="preview-note">Un exemple visuel : remplacez les informations par celles de votre produit.</div></div></div></section>
+<section class="section" id="avantages"><div class="wrap"><div class="section-head"><h2>Tout commence par une bonne présentation</h2><p>BizFlow vous aide à gagner du temps et à communiquer plus clairement avec vos clients.</p></div><div class="features"><article class="feature"><div class="icon">✍️</div><h3>Textes publicitaires</h3><p>Préparez une annonce avec le nom, le prix, les détails et le contact de votre entreprise.</p></article><article class="feature"><div class="icon">🖼️</div><h3>Affiches avec photos</h3><p>Un espace prévu pour les futures créations visuelles qui mettent vos produits en valeur.</p></article><article class="feature"><div class="icon">🎬</div><h3>Vidéos promotionnelles</h3><p>Une section dédiée aux futures vidéos animées et aux outils vidéo Premium.</p></article></div></div></section>
+<section class="section workspace" id="creer"><div class="wrap"><div class="section-head"><h2>Créez votre première annonce</h2><p>Remplissez les champs ci-dessous, puis copiez le texte ou partagez-le sur WhatsApp.</p></div><div class="workspace-grid"><div class="panel"><h3>Les informations du produit</h3><form id="adForm"><div class="field"><label for="product">Nom du produit *</label><input id="product" required placeholder="Ex. Toyota Camry 2011"></div><div class="field"><label for="price">Prix (FCFA)</label><input id="price" inputmode="numeric" placeholder="Ex. 5000000"></div><div class="field"><label for="details">Détails importants</label><textarea id="details" placeholder="État, modèle, disponibilité, avantages…"></textarea></div><div class="field"><label for="phone">Numéro WhatsApp</label><input id="phone" inputmode="tel" placeholder="Ex. 01XXXXXXXX"></div><div class="field"><label for="style">Style de l'annonce</label><select id="style"><option value="classique">Professionnel</option><option value="dynamique">Dynamique et accrocheur</option><option value="simple">Simple et direct</option></select></div><button class="btn btn-primary" type="submit" style="width:100%">Générer ma publicité</button></form></div><div class="panel"><h3>Votre annonce</h3><div class="result" id="result" aria-live="polite">Votre texte publicitaire apparaîtra ici après avoir rempli les informations et cliqué sur « Générer ma publicité ».</div><div class="row"><button class="btn btn-light" id="copyBtn" type="button">Copier le texte</button><button class="btn btn-primary" id="waBtn" type="button">Partager WhatsApp</button></div><p class="hint">Astuce : vérifiez toujours le prix et le numéro avant de publier. Cette version génère le texte directement dans votre navigateur.</p></div></div></div></section>
+<section class="section" id="premium"><div class="wrap"><div class="premium"><div><div class="tag">BizFlow Premium · Bientôt</div><h2>Allez plus loin avec vos visuels</h2><p>Nous préparons des outils pour créer des affiches avec photos, améliorer des images de produits et préparer des vidéos promotionnelles.</p><ul><li>Affiches produits avec prix et coordonnées</li><li>Retouche et mise en valeur des photos</li><li>Vidéos animées et options vidéo avancées</li></ul><p style="font-size:.85rem">Les fonctions Premium et les paiements ne sont pas encore activés sur cette version.</p></div><a class="btn btn-primary" href="#creer">Essayer le générateur</a></div></div></section>
+<section class="section"><div class="wrap"><div class="section-head"><h2>Comment ça marche ?</h2><p>Pas besoin d'être spécialiste en marketing pour commencer.</p></div><div class="steps"><div class="step"><b>1</b><h3>Décrivez votre produit</h3><p>Ajoutez son nom, son prix et les informations utiles.</p></div><div class="step"><b>2</b><h3>Générez le texte</h3><p>BizFlow organise les informations en une annonce prête à relire.</p></div><div class="step"><b>3</b><h3>Copiez et partagez</h3><p>Copiez l'annonce ou ouvrez WhatsApp pour la partager.</p></div></div></div></section>
+<section class="section" style="padding-top:0"><div class="wrap faq"><div class="section-head"><h2>Questions fréquentes</h2></div><details><summary>BizFlow est-il gratuit ?</summary><p>Le générateur de texte de cette version est gratuit. Les fonctions avancées seront présentées lorsqu'elles seront réellement disponibles.</p></details><details><summary>Est-ce que les affiches et vidéos sont déjà disponibles ?</summary><p>Pas encore. Leur espace est présenté ici, mais il faudra les développer et les tester avant de les proposer aux utilisateurs.</p></details><details><summary>Est-ce que je peux utiliser BizFlow sur mon téléphone ?</summary><p>Oui. Cette page est conçue pour s'adapter aux écrans de téléphone, tablette et ordinateur.</p></details></div></section>
+</main><footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#accueil"><span class="logo">B</span><span>BizFlow</span></a><small>Des publicités plus simples pour faire connaître vos produits.</small><small>© <span id="year"></span> BizFlow</small></div></footer><div class="toast" id="toast" role="status"></div>
 <script>
-let adText = "";
-let counter = 0;
-
-function generateAd(){
- const product = document.getElementById("product").value.trim();
- const price = document.getElementById("price").value.trim();
- const details = document.getElementById("details").value.trim();
- const phone = document.getElementById("phone").value.trim();
- const style = document.getElementById("style").value;
-
- if(!product){
-   alert("Veuillez entrer le nom du produit.");
-   return;
- }
-
- const titles = {
-  pro:[
-   "✨ UNE BELLE OPPORTUNITÉ À DÉCOUVRIR",
-   "⭐ PRODUIT DISPONIBLE DÈS MAINTENANT"
-  ],
-  urgent:[
-   "🚨 OFFRE À DÉCOUVRIR !",
-   "🔥 NE MANQUEZ PAS CETTE OPPORTUNITÉ"
-  ],
-  friendly:[
-   "😊 Bonjour à tous !",
-   "🛍️ Voici un produit qui pourrait vous intéresser !"
-  ]
- };
-
- const intros = {
-  pro:"Nous vous proposons :",
-  urgent:"Découvrez dès maintenant :",
-  friendly:"Je vous présente :"
- };
-
- const endings = {
-  pro:"Contactez-nous pour plus d'informations.",
-  urgent:"Intéressé ? Contactez-nous rapidement !",
-  friendly:"Une question ? Écrivez-nous avec plaisir !"
- };
-
- const title = titles[style][counter % 2];
- counter++;
-
- const formattedPrice = price
-  ? Number(price).toLocaleString("fr-FR") + " FCFA"
-  : "Prix sur demande";
-
- adText =
- title + "\n\n" +
- intros[style] + "\n\n" +
- "📦 " + product + "\n" +
- "💰 Prix : " + formattedPrice + "\n" +
- (details ? "\n✅ Caractéristiques :\n" + details + "\n" : "") +
- "\n" + endings[style] +
- (phone ? "\n📲 WhatsApp : +" + phone.replace(/\D/g,"") : "") +
- "\n\n#BizFlow #Vente #BonPlan";
-
- document.getElementById("result").textContent = adText;
- document.getElementById("resultBox").style.display = "block";
- document.getElementById("notice").textContent = "";
- document.getElementById("resultBox").scrollIntoView({behavior:"smooth"});
-}
-
-async function copyAd(){
- try{
-  await navigator.clipboard.writeText(adText);
-  document.getElementById("notice").textContent = "✅ Publicité copiée !";
- }catch(e){
-  const t=document.createElement("textarea");
-  t.value=adText;
-  document.body.appendChild(t);
-  t.select();
-  document.execCommand("copy");
-  t.remove();
-  document.getElementById("notice").textContent = "✅ Texte copié.";
- }
-}
-
-function shareAd(){
- if(!adText)return;
- window.open(
-  "https://wa.me/?text=" + encodeURIComponent(adText),
-  "_blank"
- );
-}
+const form=document.getElementById('adForm'), result=document.getElementById('result'), toast=document.getElementById('toast');let adText='';
+function notify(msg){toast.textContent=msg;toast.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>toast.style.display='none',2600)}
+function money(value){const digits=value.replace(/[^0-9]/g,'');return digits?Number(digits).toLocaleString('fr-FR')+' FCFA':''}
+form.addEventListener('submit',e=>{e.preventDefault();const product=document.getElementById('product').value.trim();const price=money(document.getElementById('price').value);const details=document.getElementById('details').value.trim();const phone=document.getElementById('phone').value.trim();const style=document.getElementById('style').value;let intro=style==='dynamique'?'🔥 À NE PAS MANQUER !':style==='simple'?'À vendre :':'✨ Découvrez notre offre :';let lines=[intro,product.toUpperCase()];if(price)lines.push('💰 Prix : '+price);if(details)lines.push('',details);lines.push('',style==='simple'?'Intéressé(e) ? Contactez-nous.':'📩 Intéressé(e) ? Écrivez-nous pour plus d’informations.');if(phone)lines.push('📱 WhatsApp : '+phone);lines.push('','📌 Contactez-nous dès maintenant !');adText=lines.join('\n');result.textContent=adText;notify('Votre annonce est prête. Relisez-la avant de la publier.');});
+document.getElementById('copyBtn').addEventListener('click',async()=>{if(!adText){notify('Générez d’abord une publicité.');return}try{await navigator.clipboard.writeText(adText);notify('Texte copié !')}catch(e){const ta=document.createElement('textarea');ta.value=adText;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');notify('Texte copié !')}catch(err){notify('Sélectionnez le texte pour le copier.')}ta.remove()}});
+document.getElementById('waBtn').addEventListener('click',()=>{if(!adText){notify('Générez d’abord une publicité.');return}window.open('https://wa.me/?text='+encodeURIComponent(adText),'_blank','noopener')});document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-
-</body>
-</html>
+</body></html>
